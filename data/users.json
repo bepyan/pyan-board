@@ -1,0 +1,14 @@
+{
+	"test": {
+		"pw": "asdf",
+		"name": "관리자"
+	},
+	"pyan": {
+		"pw": "asdf",
+		"name": "김평안"
+	},
+	"bmk": {
+		"pw": "asdf",
+		"name": "족장"
+	}
+}
