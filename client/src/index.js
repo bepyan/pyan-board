@@ -1,3 +1,3 @@
-const { load } = require("router");
+import load from "./router.js"
 
-load('login')
+load('home');

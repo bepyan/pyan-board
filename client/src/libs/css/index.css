@@ -1,8 +1,30 @@
 @import "reset.css";
 @import "button.css";
 @import "modal.css";
+@import "home.css";
 
-.login-warper{
+.f-r{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.f-c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.f-r > *, .f-c > * {
+    flex: 1;
+}
+
+.bt-wrapper > * {
+    margin-left: 10px;
+}
+
+
+.login-warpper{
     margin-top: 250px;
 }
 .title {
@@ -14,16 +36,4 @@
     color: darkred;
 }
 
-.f-c{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.f-m{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.f-m > *, .f-c > * {
-    flex: 1
-}
+

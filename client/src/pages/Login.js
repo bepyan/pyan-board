@@ -45,7 +45,7 @@ const Login = () => {
 
     /* MAIN */
     const root = document.createElement('div');
-    root.className = 'login-warper f-c';
+    root.className = 'login-warpper f-c';
     renderRoot();
     initEventListener();
     return root;

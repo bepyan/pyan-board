@@ -42,7 +42,7 @@ const Signup = () => {
                 <input class="id" placeholder="ID">
                 <input class="pw" type="password" placeholder="pw">
                 <input class="name" placeholder="name">
-                <div class="bt-warper">
+                <div class="bt-wrapper">
                     <button type="submit"> sign in </button>
                     <button class="close"> close </button>
                 </div>

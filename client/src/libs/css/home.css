@@ -1,0 +1,45 @@
+.home-warpper > *{
+    margin-top: 1rem;
+}
+.boards-wrapper {
+    width: 80%;
+}
+.boards-wrapper{
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+}
+.setting {
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.board {
+    padding: 1rem 0 1rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.board, .board div{
+    width: 100%;
+}
+.board > *:first-child {
+    align-items: baseline;
+    margin-left: 1rem;
+}
+.board > *:last-child {
+    margin-right: 1rem;
+    justify-content: flex-end;
+}
+
+.board .state {
+    flex: 0.7;
+    margin-left: 1rem;
+    color: darkslateblue;
+}
+.board .time {
+    color: darkgray;
+    font-size: 12px;
+}
+.board .bt-wrapper button {
+    max-width: 70px;
+}

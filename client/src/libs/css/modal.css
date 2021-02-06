@@ -32,11 +32,8 @@
     margin-bottom: 20px;
     width: 80%;
 }
-.bt-warper{
-    margin-bottom: 10px;
-}
-.bt-warper > * {
-    margin-left: 10px;
+.signup-form > .bt-wrapper {
+    margin-bottom: 1rem;
 }
 
 .hidden {
