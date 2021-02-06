@@ -1,17 +1,25 @@
-button {
+button{
     all: unset;
     cursor: pointer;
-    background-color: white;
     padding: 5px 0px;
     width: 80px;
     text-align: center;
     border-radius: 5px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     color: rgba(0, 0, 0, 0.7);
     text-transform: uppercase;
     font-weight: 800;
     font-size: 12px;
 }
+button:hover {
+    box-shadow: 0 6px 20px #ececec;
+}
 button:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
+}
+
+input {
+    all: unset;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    font-weight: 800;
 }

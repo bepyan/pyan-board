@@ -1,0 +1,29 @@
+@import "reset.css";
+@import "button.css";
+@import "modal.css";
+
+.login-warper{
+    margin-top: 250px;
+}
+.title {
+    font-family: cursive;
+    font-size: 50px;
+}
+.error {
+    font-size: small;
+    color: darkred;
+}
+
+.f-c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.f-m{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.f-m > *, .f-c > * {
+    flex: 1
+}

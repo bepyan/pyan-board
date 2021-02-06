@@ -1,0 +1,44 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.modal-content {
+    position: relative;
+    width: 300px;
+    margin-top: 10%;
+    padding: 50px 50px 20px 50px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18), 0, 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.signup-form{
+    width: 100%;
+}
+.signup-form > input {
+    margin-bottom: 20px;
+    width: 80%;
+}
+.bt-warper{
+    margin-bottom: 10px;
+}
+.bt-warper > * {
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
