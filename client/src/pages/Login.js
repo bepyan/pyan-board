@@ -32,7 +32,7 @@ const Login = () => {
     }
 
     /* render */
-    const renderRoot = () =>  root.innerHTML = `
+    const renderLogin = () =>  `
         <p class="title"> Login to pyan-board </p>
         <form class="login-form">
             <input class="id" placeholder="ID">
@@ -46,7 +46,9 @@ const Login = () => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'login-warpper f-c';
-    renderRoot();
+    root.innerHTML = renderLogin();
+    root.appendChild(Signup());
+    
     initEventListener();
     return root;
 }

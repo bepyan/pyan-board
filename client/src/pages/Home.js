@@ -1,4 +1,6 @@
 import { $ } from "../libs/util.js";
+import BoardSearch from "../components/BoardSearch.js"
+import Header from "../components/Header.js";
 
 const usersBoards = {
     "test": ["p-101", "p-102"],
@@ -31,6 +33,8 @@ const boardsDB = {
 const userId = 'test' // 임시 유저 아이디
 // board team 신청하기
 // 권한 조정,, 요청 받기
+
+
 const Home = () => {
 
     const getBoards = () => {
@@ -46,7 +50,7 @@ const Home = () => {
                 </div>
                 <p class="time"> ${new Date().getTime() - item.lastUpdate} </p>
             </div>
-            <p style="flex: 2"> ${item.description} </p>
+            <p style="flex: 1.5"> ${item.description} </p>
             <div class="bt-wrapper f-r">
                 <button> eidt </button>
                 <button> delete </button>
@@ -54,19 +58,7 @@ const Home = () => {
         </div>`
     }).join('')
     
-    const renderRoot = () =>  root.innerHTML = `
-        <div class="header f-r">
-            <p> user name </p>
-            <button> logout </button>
-        </div>
-
-        <form class="search-wrapper">
-            <tooltip> ⚑ </tooltip>
-            <input>
-            <button type="submit"> search </button>
-            <button type="button" style="width: 170px"> see random board </button>
-        </form>
-
+    const renderBoardsWrapper = () => `
         <div class="boards-wrapper f-c"> 
             <div class="setting bt-wrapper">
                 <button> add project </button>
@@ -76,10 +68,13 @@ const Home = () => {
         </div>
     `
     /* MAIN */
+    const boards = getBoards();
+
     const root = document.createElement('div');
     root.className = 'home-warpper f-c'
-    const boards = getBoards();
-    renderRoot();
+    root.appendChild(Header());
+    root.appendChild(BoardSearch());
+    root.innerHTML += renderBoardsWrapper();
 
     return root;
 }
