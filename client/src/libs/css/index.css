@@ -1,8 +1,26 @@
+
+/* common setup */
 @import "reset.css";
 @import "button.css";
+/*  component */
 @import "modal.css";
 @import "home.css";
+@import "board.css";
 
+input {
+    all: unset;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    font-weight: 800;
+}
+textarea{
+    all: unset;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+/* common flex */
 .f-r{
     display: flex;
     justify-content: center;
@@ -19,14 +37,8 @@
     flex: 1;
 }
 
-.bt-wrapper > * {
-    margin-left: 10px;
-}
+/* common component */
 
-
-.login-warpper{
-    margin-top: 250px;
-}
 .title {
     font-family: cursive;
     font-size: 50px;
@@ -35,5 +47,13 @@
     font-size: small;
     color: darkred;
 }
-
-
+.header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.login-warpper {
+    margin-top: 250px;
+}
+.bt-wrapper > * {
+    margin-left: 10px;
+}

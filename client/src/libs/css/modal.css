@@ -18,24 +18,25 @@
 .modal-content {
     position: relative;
     width: 300px;
-    margin-top: 10%;
-    padding: 50px 50px 20px 50px;
+    padding: 30px 50px 20px 50px;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18), 0, 6px 6px rgba(0, 0, 0, 0.2);
 }
-
-.signup-form{
+.modal-content > * {
     width: 100%;
 }
-.signup-form > input {
+.hidden {
+    display: none;
+}
+
+.modal-content input{
     margin-bottom: 20px;
     width: 80%;
 }
-.signup-form > .bt-wrapper {
-    margin-bottom: 1rem;
+.modal-content textarea{
+    margin-bottom: 20px;
 }
-
-.hidden {
-    display: none;
+.modal-content .bt-wrapper {
+    margin-bottom: 1rem;
 }

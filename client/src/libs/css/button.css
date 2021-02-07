@@ -18,8 +18,9 @@ button:active {
     transform: scale(0.97);
 }
 
-input {
-    all: unset;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    font-weight: 800;
+.delete {
+    color: darkred;
+}
+.delete:hover {
+    box-shadow: 0 1px 5px rgba(255, 0, 0, 0.2);
 }

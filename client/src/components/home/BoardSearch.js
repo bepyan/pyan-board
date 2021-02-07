@@ -1,4 +1,4 @@
-import { $ } from "../libs/util.js";
+import { $ } from "../../libs/util.js";
 
 const BoardSearch = () => {
     

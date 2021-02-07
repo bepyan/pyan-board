@@ -4,8 +4,11 @@ import Login from "./pages/Login.js";
 
 import { $ } from "./libs/util.js";
 
-function load(id, root = $(".root")) {
+function load(id, props={}) {
 
+    // 조금 비효율적..
+    window.sessionStorage.setItem('url', id);
+    const root = $(".root");
     root.innerHTML = ``;
     
     switch(id){
@@ -16,7 +19,7 @@ function load(id, root = $(".root")) {
             root.appendChild(Home());
             break;
         case 'board':
-            root.appendChild(Board());
+            root.appendChild(Board(props));
             break;
         default:
             root.innerHTML = id;
