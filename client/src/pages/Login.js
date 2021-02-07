@@ -3,10 +3,10 @@ import SignupModal from "../components/login/SignupModal.js";
 
 
 const Login = () => {
-    const renderTitle = () => `<p class="title"> Login to pyan-board </p>`
+    const renderTitle = () => `<p class="title"> pyan-board </p>`
     /* MAIN */
     const root = document.createElement('div');
-    root.className = 'login-warpper f-c'
+    root.className = 'login-wrapper f-c'
     root.innerHTML = renderTitle();
     root.appendChild(LoginFrom())
     root.appendChild(SignupModal());

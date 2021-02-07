@@ -18,5 +18,7 @@ const board = {
         'Done': []
     }
 }
+
+
 load('board', {board})
 // load(url ? 'home' : 'login');
