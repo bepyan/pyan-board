@@ -1,4 +1,4 @@
-import { $, $$, isInVailInput } from "../../libs/util.js";
+import { $, $$, isInVailInput, renderError } from "../../libs/util.js";
 import Modal from "../Modal.js";
 
 const Signup = () => {
@@ -11,7 +11,7 @@ const Signup = () => {
         const pw = $('.pw', root).value;
         const name = $('.name', root).value;
         if(isInVailInput([id, pw, name])){
-            $('.error', root).innerHTML = `😢 Invaild Input`;
+            renderError(root);
             return;
         }
         // 회원가입 api

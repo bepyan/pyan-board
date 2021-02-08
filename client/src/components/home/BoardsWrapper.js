@@ -9,7 +9,6 @@ const BoardsWrapper = ({boards}) => {
         root.addEventListener('click', e => {
             switch(e.target.className){
                 case 'add-bt':
-                    console.log('adf')
                     $('.board-add-wrapper').classList.remove('hidden');
                     break;
                 case 'sort-bt':

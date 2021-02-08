@@ -1,39 +1,64 @@
+import { $, $$$, isInVailInput, popSuccess, renderError, renderToggle } from "../../libs/util.js";
+import load from "../../router.js";
 import Modal from "../Modal.js";
 
 const BoardAddModal = () => {
 
     /* usecase event */
-    
+    const addBoard = () => {
+
+        const name = $('.name', root).value;
+        const state = $('.toggle', root).innerHTML;
+        const description = $('.description', root).value;
+        if(isInVailInput([name, state])){
+            renderError(root);
+            return;
+        }
+        const board = {
+            name,
+            state,
+            description,
+            'members': {'test': 'owner'},
+            'lastUpdate': new Date().getTime()
+        }
+        // api add board
+
+        popSuccess('add board')
+        load('home');
+    }
 
     /* evnet listener*/
     const initEventListener = () => {
         root.addEventListener('click', e => {
             switch(e.target.className){
-                
+                case 'private':
+                    renderToggle(root, 'private');
+                    break;
+                case 'public':
+                    renderToggle(root, 'public');
+                    break;
+                case 'add':
+                    addBoard();
+                    break;
                 default:
             }
         })
-
-        root.addEventListener('submit', e => {
-            e.preventDefault();
-        })
-
     }
     
     /* render */
     const innerHTML = `
         <div class="f-c">
             
-            <input class="board-name" placeholder="board name">
+            <input class="name" placeholder="board name">
             <div class="bt-wrapper">
-                <button> private </button>
-                <button> public </button>
+                <button class="private"> private </button>
+                <button class="public"> public </button>
             </div>
-            <textarea class="board-description"></textarea>
+            <textarea class="description"></textarea>
             
             <div class="bt-wrapper">
-                <button type="submit"> add </button>
-                <button type="button" class="close"> close </button>
+                <button class="add"> add </button>
+                <button class="close"> close </button>
             </div>
             <p class="error"> &nbsp </p>
         </div>
@@ -43,6 +68,7 @@ const BoardAddModal = () => {
     const root = document.createElement('div');
     root.className = 'board-add-wrapper';
     Modal(root, innerHTML, () => {
+        renderToggle(root, 'private');
         initEventListener();
     })
     return root;

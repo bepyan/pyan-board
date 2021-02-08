@@ -2,9 +2,22 @@ const $ = (name, doc=document) => doc.querySelector(name);
 const $$ = (name) => document.getElementById(name);
 const $$$ = (name, doc=document) => doc.querySelectorAll(name);
 
+const renderToggle = (root, targetClassName) => {
+    $$$('.toggle', root).forEach(item => item.classList.remove('toggle'));
+    const target = $(`.${targetClassName}`, root);
+    target.classList.add('toggle');
+}
+
 const isInVailInput = (arr) => {
     const isBlank = arr.some(item => item.replace(/ /g, "")  === "")
     return isBlank
+}
+const renderError = (root, str=`😢 Invaild Input`) => {
+    const $error = $('.error', root);
+    if($error)
+        $error.innerHTML = str;
+    else
+        console.err('no ".error" documnet')
 }
 
 const getPassTime = (time) => {
@@ -24,4 +37,4 @@ const getPassTime = (time) => {
 const popSuccess = (work) => alert(`🥰 success to work "${work}"`);
 const popFail = (work, err) => alert(`😭 fail to wrok "${wrok}"`, err);
 
-export {$, $$, $$$, isInVailInput, getPassTime, popSuccess, popFail};
+export {$, $$, $$$, renderToggle, isInVailInput, renderError, getPassTime, popSuccess, popFail};

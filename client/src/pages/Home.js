@@ -11,9 +11,9 @@ let boardNextKey = 103;
 const boardsDB = {
     "p-101": {
         'name': "web-study-kit",
+        'state': 'private', // or 'public'
         'description': "study together with kakapstudy together with kakapstudy together with kakapstudy together with kakap",
         'members': {'test': 'owner', 'bmk': 'edit', 'pyan':'read'},
-        'state': 'private', // or 'public'
         'lastUpdate': new Date('2021').getTime(),
         'lists': {
             'To Do': [{

@@ -1,11 +1,29 @@
-import { $, $$$, popSuccess } from "../../libs/util.js";
+import { $, $$$, popSuccess, renderToggle } from "../../libs/util.js";
 import load from "../../router.js";
 import Modal from "../Modal.js";
 
 const BoardEditModal = ({board}) => {
 
     /* usecase event */
-    
+    const onToggle = (state) => {
+        board.state = state;
+        renderToggle(root, state);
+    }
+    const onEdit = () => {
+        board.boardName = $('.name', root).value;
+        board.description = $('.description', root).value;
+        // api edit board
+
+        root.remove();
+        load('home');
+    }
+    const onDelete = () => {
+        const res = prompt('🥺 Do you really want to delete this board?\n type "yes" to delete');
+        if(res === 'yes'){
+            root.remove();
+            popSuccess('delete');
+        }
+    }
 
     /* evnet listener*/
     const initEventListener = () => {
@@ -15,25 +33,16 @@ const BoardEditModal = ({board}) => {
                     root.remove();
                     break;
                 case 'private':
-                    board.state = 'private';
-                    renderToggle();
+                    onToggle('private');
                     break;
                 case 'public':
-                    board.state = 'public';
-                    renderToggle();
+                    onToggle('public');
                     break;
                 case 'edit':
-                    board.boardName = $('.name', root).value;
-                    board.description = $('.description', root).value;
-                    root.remove();
-                    load('home');
+                    onEdit();
                     break;
                 case 'delete':
-                    const res = prompt('🥺 Do you really want to delete this board?\n type "yes" to delete');
-                    if(res === 'yes'){
-                        root.remove();
-                        popSuccess('delete');
-                    }
+                    onDelete();
                     break;
                 default:
             }
@@ -41,11 +50,6 @@ const BoardEditModal = ({board}) => {
     }
     
     /* render */
-    const renderToggle = () => {
-        $$$('.toggle', root).forEach(item => item.classList.remove('toggle'));
-        const target = $(`.${board.state}`, root);
-        target.classList.add('toggle');
-    }
     const innerHTML = `
         <div class="f-c">
             
@@ -69,7 +73,7 @@ const BoardEditModal = ({board}) => {
     const root = document.createElement('div');
     root.className = 'board-edit-wrapper';
     Modal(root, innerHTML, () => {
-        renderToggle();
+        renderToggle(root, board.state);
         initEventListener();
     });
     root.classList.remove('hidden');
