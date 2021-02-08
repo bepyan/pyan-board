@@ -20,5 +20,5 @@ const board = {
 }
 
 
-load('board', {board})
-// load(url ? 'home' : 'login');
+//load('board', {board})
+load(url ? 'home' : 'login');

@@ -7,4 +7,7 @@ const isInVailInput = (arr) => {
     return isBlank
 }
 
-export {$, $$, $$$, isInVailInput};
+const popSuccess = (work) => alert(`🥰 success to work "${work}"`);
+const popFail = (work, err) => alert(`😭 fail to wrok "${wrok}"`, err);
+
+export {$, $$, $$$, isInVailInput, popSuccess, popFail};
