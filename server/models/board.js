@@ -1,14 +1,16 @@
 const mongoose = require('mongoose')
 
-const userSchema = mongoose.Schema({
+const boardSchema = mongoose.Schema({
     id: {
         type: String,
         require: true,
         unique: true,
+        trim: true
     },
     pw: {
         type: String,
-        require: true
+        require: true,
+        trim: true
     },
     name: {
         type: String,
@@ -16,4 +18,4 @@ const userSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Users', userSchema)
+module.exports = mongoose.model('Boards', boardSchema)

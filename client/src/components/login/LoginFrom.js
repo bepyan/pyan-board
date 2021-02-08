@@ -1,5 +1,5 @@
 import load from "../../router.js";
-import { $, isInVailInput, openModal, renderError } from "../../libs/util.js";
+import { $, isInVailInput, openModal, popFail, renderError } from "../../libs/util.js";
 import api from "../../libs/api.js";
 
 const LoginFrom = () => {
@@ -13,13 +13,13 @@ const LoginFrom = () => {
         }
 
         // 로그인 api
-        api('get', '/users/login', {id, pw}, () => {
-
+        api('get', '/users/login', {id, pw}, (res) => {
+            const {success, err} = res.data;
+            if(!success)
+                renderError(root, err);
+            else
+                load('home');
         });
-
-        // 성공하면 load('home')
-        if(id === 'test' && pw === 'asdf')
-            load('home');
     }
 
     /* evnet listener*/

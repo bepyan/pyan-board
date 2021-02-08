@@ -38,6 +38,6 @@ const getPassTime = (time) => {
 }
 
 const popSuccess = (work) => alert(`🥰 success to work "${work}"`);
-const popFail = (work, err) => alert(`😭 fail to wrok "${wrok}"`, err);
+const popFail = (work, err) => alert(`😭 fail to work "${work}"`, err);
 
 export {$, $$, $$$, renderToggle, openModal, isInVailInput, renderError, getPassTime, popSuccess, popFail};

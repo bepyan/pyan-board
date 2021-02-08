@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 
 const mongoose = require('mongoose')
+mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 
 const app = express();
@@ -36,13 +37,14 @@ app.use(session({
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 // catch 404 and forward to error handler
-app.use((next) => {
+app.use((req, res, next) => {
   next(createError(404));
 });
 // error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
