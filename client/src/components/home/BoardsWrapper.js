@@ -1,4 +1,4 @@
-import { $, $$$, getPassTime } from "../../libs/util.js";
+import { $, $$$, getPassTime, openModal } from "../../libs/util.js";
 import load from "../../router.js";
 import BoardEditModal from "./BoardEditModal.js";
 import BoardAddModal from "./BoardAddModal.js";
@@ -9,7 +9,7 @@ const BoardsWrapper = ({boards}) => {
         root.addEventListener('click', e => {
             switch(e.target.className){
                 case 'add-bt':
-                    $('.board-add-wrapper').classList.remove('hidden');
+                    openModal('board-add-wrapper');
                     break;
                 case 'sort-bt':
                     break;
@@ -28,6 +28,7 @@ const BoardsWrapper = ({boards}) => {
                         load('board', {board})
                         break;
                     case 'edit-bt':
+                        // make and open modal
                         root.appendChild(BoardEditModal({board}));
                         break;
                     default:

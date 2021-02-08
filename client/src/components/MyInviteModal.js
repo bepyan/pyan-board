@@ -1,4 +1,4 @@
-import Modal from "./Modal.js";
+import makeModal from "../libs/makeModal.js";
 
 const MyInviteModal = () => {
 
@@ -9,7 +9,7 @@ const MyInviteModal = () => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'my-invite-wrapper';
-    Modal(root, innerHTML, () => {
+    makeModal(root, innerHTML, () => {
 
     });
     return root;

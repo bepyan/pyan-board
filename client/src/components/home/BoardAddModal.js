@@ -1,6 +1,6 @@
 import { $, $$$, isInVailInput, popSuccess, renderError, renderToggle } from "../../libs/util.js";
 import load from "../../router.js";
-import Modal from "../Modal.js";
+import makeModal from "../../libs/makeModal.js";
 
 const BoardAddModal = () => {
 
@@ -67,7 +67,7 @@ const BoardAddModal = () => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'board-add-wrapper';
-    Modal(root, innerHTML, () => {
+    makeModal(root, innerHTML, () => {
         renderToggle(root, 'private');
         initEventListener();
     })

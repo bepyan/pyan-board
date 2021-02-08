@@ -1,5 +1,5 @@
 import load from "../../router.js";
-import { $, isInVailInput } from "../../libs/util.js";
+import { $, isInVailInput, openModal } from "../../libs/util.js";
 
 const LoginFrom = () => {
     /* usecase event */
@@ -24,9 +24,7 @@ const LoginFrom = () => {
             e.preventDefault();
             onLogin();
         })
-        $('.signup-bt', root).addEventListener('click', e => {
-            $('.signup-wrapper').classList.remove('hidden');
-        })
+        $('.signup-bt', root).addEventListener('click', e => openModal("signup-wrapper"));
     }
 
     /* render */

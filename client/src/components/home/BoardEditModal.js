@@ -1,6 +1,6 @@
 import { $, $$$, popSuccess, renderToggle } from "../../libs/util.js";
 import load from "../../router.js";
-import Modal from "../Modal.js";
+import makeModal from "../../libs/makeModal.js";
 
 const BoardEditModal = ({board}) => {
 
@@ -72,7 +72,7 @@ const BoardEditModal = ({board}) => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'board-edit-wrapper';
-    Modal(root, innerHTML, () => {
+    makeModal(root, innerHTML, () => {
         renderToggle(root, board.state);
         initEventListener();
     });

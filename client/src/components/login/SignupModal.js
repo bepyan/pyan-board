@@ -1,5 +1,5 @@
 import { $, $$, isInVailInput, renderError } from "../../libs/util.js";
-import Modal from "../Modal.js";
+import makeModal from "../../libs/makeModal.js";
 
 const Signup = () => {
     // TO DO
@@ -42,7 +42,7 @@ const Signup = () => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'signup-wrapper';
-    Modal(root, innerHtml, () => {
+    makeModal(root, innerHtml, () => {
         initEventListener();
     });
 

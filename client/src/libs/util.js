@@ -7,6 +7,9 @@ const renderToggle = (root, targetClassName) => {
     const target = $(`.${targetClassName}`, root);
     target.classList.add('toggle');
 }
+const openModal = (className) => {
+    $(`.${className}`).classList.remove('hidden');
+}
 
 const isInVailInput = (arr) => {
     const isBlank = arr.some(item => item.replace(/ /g, "")  === "")
@@ -37,4 +40,4 @@ const getPassTime = (time) => {
 const popSuccess = (work) => alert(`🥰 success to work "${work}"`);
 const popFail = (work, err) => alert(`😭 fail to wrok "${wrok}"`, err);
 
-export {$, $$, $$$, renderToggle, isInVailInput, renderError, getPassTime, popSuccess, popFail};
+export {$, $$, $$$, renderToggle, openModal, isInVailInput, renderError, getPassTime, popSuccess, popFail};

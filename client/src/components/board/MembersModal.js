@@ -1,4 +1,4 @@
-import Modal from "../Modal.js";
+import makeModal from "../../libs/makeModal.js";
 
 const MembersModal = ({members}) => {
     
@@ -16,7 +16,7 @@ const MembersModal = ({members}) => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = "members-wrapper";
-    Modal(root, innerHTML, () => {
+    makeModal(root, innerHTML, () => {
 
     })
     return root;

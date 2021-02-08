@@ -1,4 +1,4 @@
-import { $ } from "../../libs/util.js";
+import { $, openModal } from "../../libs/util.js";
 import load from "../../router.js";
 import InviteModal from "./InviteModal.js";
 import MembersModal from "./MembersModal.js";
@@ -15,10 +15,10 @@ const BoardManager = ({board}) => {
                     load('home');
                     break;
                 case 'invite':
-                    $('.invite-wrapper').classList.remove('hidden');
+                    openModal('invite-wrapper');
                     break;
                 case 'members':
-                    $('.members-wrapper').classList.remove('hidden');
+                    openModal('members-wrapper');
                     break;
                 default:
             }

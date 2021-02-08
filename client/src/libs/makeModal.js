@@ -1,6 +1,6 @@
-import { $ } from "../libs/util.js"
+import { $ } from "./util.js"
 
-const Modal = (root, HTML, func) => {
+const makeModal = (root, HTML, func) => {
 
     root.classList.add('modal');
     root.classList.add('hidden');
@@ -21,4 +21,4 @@ const Modal = (root, HTML, func) => {
     func();
 }
 
-export default Modal;
+export default makeModal;
