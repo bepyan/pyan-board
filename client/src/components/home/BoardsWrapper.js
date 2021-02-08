@@ -1,4 +1,4 @@
-import { $, $$$ } from "../../libs/util.js";
+import { $, $$$, getPassTime } from "../../libs/util.js";
 import load from "../../router.js";
 import BoardEditModal from "./BoardEditModal.js";
 import BoardAddModal from "./BoardAddModal.js";
@@ -41,11 +41,11 @@ const BoardsWrapper = ({boards}) => {
     const renderBoardThums = () => boards.map(item => {
         return `<div class="board f-r" id="${item.key}">
             <div class="f-c">
-                <div class="f-r">
+                <div class="f">
                     <p class="name"> ${item.name} </p>
                     <p class="state"> ${item.state} </p>
                 </div>
-                <p class="time"> ${new Date().getTime() - item.lastUpdate} </p>
+                <p class="time"> ${getPassTime(item.lastUpdate)} </p>
             </div>
             <p style="flex: 1.5"> ${item.description} </p>
             <div class="bt-wrapper f-r">

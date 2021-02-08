@@ -32,3 +32,9 @@
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
+.state {
+    margin-left: 1rem;
+}
+.time {
+    margin-top: 0.1rem;
+}

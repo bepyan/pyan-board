@@ -28,7 +28,10 @@ textarea{
 }
 
 /* common flex */
-
+.f {
+    display: flex;
+    align-items: center;
+}
 .f-r{
     display: flex;
     justify-content: center;
