@@ -1,5 +1,6 @@
 import load from "../../router.js";
-import { $, isInVailInput, openModal } from "../../libs/util.js";
+import { $, isInVailInput, openModal, renderError } from "../../libs/util.js";
+import api from "../../libs/api.js";
 
 const LoginFrom = () => {
     /* usecase event */
@@ -7,11 +8,14 @@ const LoginFrom = () => {
         const id = $('.id', root).value;
         const pw = $('.pw', root).value;
         if(isInVailInput([id, pw])){
-            $('.error', root).innerHTML = '😢 Invaild Input'
+            renderError(root);
             return;
         }
 
         // 로그인 api
+        api('get', '/users/login', {id, pw}, () => {
+
+        });
 
         // 성공하면 load('home')
         if(id === 'test' && pw === 'asdf')

@@ -11,11 +11,9 @@ const api = (mathod, route, data, func) => {
             const params = data;
             return axiosUtil(axios.get(ip+route, {params}), func);
         case 'post':
-            const body = data;
-            return axiosUtil(axios.post(ip+route, body), func);
+            return axiosUtil(axios.post(ip+route, data), func);
         case 'put':
-            const body = data;
-            return axiosUtil(axios.put(ip+route, body), func);
+            return axiosUtil(axios.put(ip+route, data), func);
         case 'delete':
             return axiosUtil(axios.delete(ip+route, {data}), func);
         default:
