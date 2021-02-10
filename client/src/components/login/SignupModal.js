@@ -1,5 +1,7 @@
-import { $, $$, isInVailInput, renderError } from "../../libs/util.js";
+import { $, $$, isInVailInput, popSuccess, renderError } from "../../libs/util.js";
 import makeModal from "../../libs/makeModal.js";
+import api from "../../libs/api.js";
+import load from "../../router.js";
 
 const Signup = () => {
     // TO DO
@@ -15,7 +17,15 @@ const Signup = () => {
             return;
         }
         // 회원가입 api
-
+        api('post', '/users/signup', {id, pw, name}, (res) => {
+            const {success, err} = res.data;
+            if(!success){
+                renderError(root, err);
+                return;
+            }
+            popSuccess('sign-in');
+            load('home');
+        })
         // 성공하면 load('login')
     }
 

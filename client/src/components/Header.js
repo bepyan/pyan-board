@@ -1,18 +1,24 @@
+import api from "../libs/api.js";
+import { getStorage, removeStorage } from "../libs/storage.js";
 import { $ } from "../libs/util.js";
 import load from "../router.js";
 import MyInviteModal from "./MyInviteModal.js";
 
 const Header = () => {
 
+    const onLogout = () => {
+        api('get', '/users/logout', {}, (res) => {
+            removeStorage('user');
+            load('login');
+        })
+    }
+
     /* event listener */
     const initEventListener = () => {
-        console.log($('.logout', root))
-
         root.addEventListener('click', e => {
             switch(e.target.className){
                 case 'logout':
-                    console.log('asdf')
-                    load('login');
+                    onLogout();
                     break;
                 case 'myInvite':
                     $('.my-invite-wrapper').classList.remove('hidden');
@@ -24,10 +30,13 @@ const Header = () => {
     }
 
     /* MAIN */
+    const user = getStorage('user');
+    
     const root = document.createElement('div');
-    root.className = 'header f-r';
+    root.className = 'header f';
     root.innerHTML = `
-        <p> user name </p>
+        <p class="user-id"> ${user.id} </p>
+        <p class="user-name"> ${user.name} </p>
         <button class="logout"> logout </button>
         <button class="myInvite"> my invite </button>
     `

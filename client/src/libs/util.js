@@ -15,6 +15,15 @@ const isInVailInput = (arr) => {
     const isBlank = arr.some(item => item.replace(/ /g, "")  === "")
     return isBlank
 }
+const isJsonString = (str) => {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 const renderError = (root, str=`😢 Invaild Input`) => {
     const $error = $('.error', root);
     if($error)
@@ -38,6 +47,6 @@ const getPassTime = (time) => {
 }
 
 const popSuccess = (work) => alert(`🥰 success to work "${work}"`);
-const popFail = (work, err) => alert(`😭 fail to wrok "${wrok}"`, err);
+const popFail = (work, err='') => alert(`😭 fail to work "${work}" \n ${err}`);
 
-export {$, $$, $$$, renderToggle, openModal, isInVailInput, renderError, getPassTime, popSuccess, popFail};
+export {$, $$, $$$, renderToggle, openModal, isInVailInput, renderError, getPassTime, popSuccess, popFail, isJsonString};

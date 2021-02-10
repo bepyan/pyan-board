@@ -1,24 +1,18 @@
+import api from "./libs/api.js";
+import { getStorage, setStorage } from "./libs/storage.js";
 import load from "./router.js"
 
-const url = window.sessionStorage.getItem('url');
-// 임시방편..
-const board = {
-    'name': "web-study-kit",
-    'description': "study together with kakapstudy together with kakapstudy together with kakapstudy together with kakap",
-    'members': {'test': 'owner', 'bmk': 'edit', 'pyan':'read'},
-    'state': 'private', // or 'public'
-    'lastUpdate': new Date('2021').getTime(),
-    'lists': {
-        'To Do': [{
-            'user': 'test', 
-            'note': 'start test',
-            'date': new Date().toLocaleDateString()
-        }],
-        'Doing': [],
-        'Done': []
-    }
-}
+// `SameSite` attribute..
+document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
 
+// axios는 session ID를 매번 바꾼다..
+axios.defaults.withCredentials = true;
 
-//load('board', {board})
-load(url ? 'home' : 'login');
+api('get', '/users', {}, (res) => {
+    const {logined, user, sessionId} = res.data;
+    console.log(`😇 your session ID : \n ${sessionId}`);
+    if(user)
+        setStorage('user', user);
+    const url = getStorage('url');
+    load(logined ? url : 'login');
+});

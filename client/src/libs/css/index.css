@@ -7,10 +7,6 @@
 @import "login.css";
 @import "home.css";
 @import "board.css";
-.header {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
 
 /* common */
 input {
@@ -60,4 +56,22 @@ textarea{
 }
 .bt-wrapper > * {
     margin-left: 10px;
+}
+
+
+/* header */
+
+.header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.user-id{
+    font-weight: 600;
+    font-size: small;
+    margin-right: 5px;
+}
+.user-name{
+    font-size: small;
+    color: darkolivegreen;
+    margin-right: 1rem;
 }

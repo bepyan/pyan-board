@@ -1,6 +1,7 @@
 import load from "../../router.js";
-import { $, isInVailInput, openModal, renderError } from "../../libs/util.js";
+import { $, isInVailInput, openModal, popFail, renderError } from "../../libs/util.js";
 import api from "../../libs/api.js";
+import { setStorage } from "../../libs/storage.js";
 
 const LoginFrom = () => {
     /* usecase event */
@@ -11,12 +12,15 @@ const LoginFrom = () => {
             renderError(root);
             return;
         }
-
         // 로그인 api
         api('get', '/users/login', {id, pw}, (res) => {
-            const {success} = res;
-            if(success)
-                load('home');
+            const {user, success, err} = res.data;
+            if(!success){
+                renderError(root, err);
+                return;
+            }
+            setStorage('user', user);
+            load('home');
         });
     }
 
