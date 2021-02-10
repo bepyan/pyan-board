@@ -13,13 +13,11 @@ const LoginFrom = () => {
         }
 
         // 로그인 api
-        api('get', '/users/login', {id, pw}, () => {
-
+        api('get', '/users/login', {id, pw}, (res) => {
+            const {success} = res;
+            if(success)
+                load('home');
         });
-
-        // 성공하면 load('home')
-        if(id === 'test' && pw === 'asdf')
-            load('home');
     }
 
     /* evnet listener*/
