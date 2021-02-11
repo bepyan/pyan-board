@@ -32,7 +32,8 @@ const renderError = (root, str=`😢 Invaild Input`) => {
         console.err('no ".error" documnet')
 }
 
-const getPassTime = (time) => {
+const getPassTime = (date) => {
+    const time = new Date(date).getTime();
     let tmp = new Date().getTime() - time;
     tmp = parseInt(tmp/1000);
     if(tmp < 60)
@@ -47,6 +48,9 @@ const getPassTime = (time) => {
 }
 
 const popSuccess = (work) => alert(`🥰 success to work "${work}"`);
-const popFail = (work, err='') => alert(`😭 fail to work "${work}" \n ${err}`);
+const popFail = (work, err='') => {
+    console.err(err);
+    alert(`😭 fail to work "${work}" \n`);
+};
 
 export {$, $$, $$$, renderToggle, openModal, isInVailInput, renderError, getPassTime, popSuccess, popFail, isJsonString};

@@ -24,9 +24,8 @@ const Signup = () => {
                 return;
             }
             popSuccess('sign-in');
-            load('home');
+            load('login');
         })
-        // 성공하면 load('login')
     }
 
     /* evnet listener*/

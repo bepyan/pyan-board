@@ -10,7 +10,11 @@ require('dotenv').config();
 
 const mongoose = require('mongoose')
 mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true, 
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true})
 
 const app = express();
 
@@ -26,7 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 // );
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({ origin: true, credentials: true }));
-
 // mongo session setup
 app.use(session({
   secret: process.env.SECRET,
@@ -40,8 +43,10 @@ app.use(session({
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/boards', require('./routes/boards'));
 
 app.get('/favicon.ico', (req, res) => res.status(204));
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -53,6 +58,7 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   res.status(err.status || 500);
+  res.json({success: false, err});
   res.render('error');
 });
 

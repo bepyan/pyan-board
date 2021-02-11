@@ -1,21 +1,57 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
-const boardSchema = mongoose.Schema({
-    id: {
+const noteSchema = Schema({
+    note: {
         type: String,
-        require: true,
-        unique: true,
-        trim: true
+        require: true
     },
-    pw: {
-        type: String,
-        require: true,
-        trim: true
+    members: [String],
+    date: { 
+        type: Date, 
+        require: true
     },
+})
+
+const listSchema = Schema({
     name: {
         type: String,
         require: true
-    }
+    },
+    nodes: [noteSchema]
 })
 
-module.exports = mongoose.model('Boards', boardSchema)
+const boardSchema = Schema({
+    name: {
+        type: String,
+        require: true
+    },
+    state: {
+        type: String,
+        enum: ["private", "public"],
+        require: true,
+        trim: true
+    },
+    description: {
+        type: String,
+        require: true
+    },
+    lastUpdate: { 
+        type: Date, 
+        default: Date.now 
+    },
+    members: [{
+        id: {
+            type: String,
+            require: true
+        },
+        auth: { 
+            type: String, 
+            enum: ["owner", "edit", "read"], 
+            require: true
+        }
+    }],
+    lists: [listSchema]
+})
+
+module.exports = mongoose.model('Board', boardSchema)

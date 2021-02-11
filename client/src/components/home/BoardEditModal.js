@@ -1,6 +1,8 @@
-import { $, $$$, popSuccess, renderToggle } from "../../libs/util.js";
+import { $, $$$, popFail, popSuccess, renderToggle } from "../../libs/util.js";
 import load from "../../router.js";
 import makeModal from "../../libs/makeModal.js";
+import Modal from "../../libs/Modal.js";
+import api from "../../libs/api.js";
 
 const BoardEditModal = ({board}) => {
 
@@ -10,18 +12,22 @@ const BoardEditModal = ({board}) => {
         renderToggle(root, state);
     }
     const onEdit = () => {
-        board.boardName = $('.name', root).value;
+        board.name = $('.name', root).value;
         board.description = $('.description', root).value;
         // api edit board
-
-        root.remove();
-        load('home');
+        api('put', '/boards/edit', {board}).then(res => {
+            root.remove();
+            load('home');
+        })
     }
     const onDelete = () => {
         const res = prompt('🥺 Do you really want to delete this board?\n type "yes" to delete');
         if(res === 'yes'){
-            root.remove();
-            popSuccess('delete');
+            api('delete', '/boards', {boardId: board._id}).then(res => {
+                root.remove();
+                popSuccess('delete');
+                load('home');
+            })
         }
     }
 
@@ -29,9 +35,6 @@ const BoardEditModal = ({board}) => {
     const initEventListener = () => {
         root.addEventListener('click', e => {
             switch(e.target.className){
-                case 'close': case 'modal-overlay':
-                    root.remove();
-                    break;
                 case 'private':
                     onToggle('private');
                     break;
@@ -72,12 +75,10 @@ const BoardEditModal = ({board}) => {
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'board-edit-wrapper';
-    makeModal(root, innerHTML, () => {
+    Modal(root, innerHTML, () => {
         renderToggle(root, board.state);
         initEventListener();
-    });
-    root.classList.remove('hidden');
-    return root;
+    })
 }
 
 export default BoardEditModal;

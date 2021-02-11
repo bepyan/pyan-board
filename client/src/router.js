@@ -4,7 +4,7 @@ import Login from "./pages/Login.js";
 
 import { $ } from "./libs/util.js";
 
-function load(id, props={}) {
+const load = async (id, props={}) => {
 
     // 조금 비효율적..
     window.sessionStorage.setItem('url', id);
@@ -13,13 +13,13 @@ function load(id, props={}) {
     
     switch(id){
         case 'login':
-            root.appendChild(Login());
+            root.appendChild(await Login());
             break;
         case 'home':
-            root.appendChild(Home());
+            root.appendChild(await Home());
             break;
         case 'board':
-            root.appendChild(Board(props));
+            root.appendChild(await Board(props));
             break;
         default:
             root.innerHTML = id;

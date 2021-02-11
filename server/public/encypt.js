@@ -1,17 +1,15 @@
 const bcrypt = require("bcrypt");
 
-const encyptCompare = async (newData, exData) => {
-    try {
-      const result = await bcrypt.compare(newData, exData);
-      return result;
-    } catch (error) {
-      console.error(error);
-    }
+const bcryptCompare = (data, hash) => {
+  const match = bcrypt.compareSync(data, hash);
+  return match;
 };
 
-const getEncyptCode = async (data, salt) => {
-    const hashPassword = await bcrypt.hash(data, salt);
-    return hashPassword;
+const bcryptHash = (data) => {
+  const saltRounds = 10;
+  const code = bcrypt.hashSync(data, saltRounds);
+  console.log(code);
+  return code;
 };
 
-module.exports = {}
+module.exports = { bcryptCompare, bcryptHash }

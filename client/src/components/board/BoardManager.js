@@ -24,7 +24,6 @@ const BoardManager = ({board}) => {
             }
         })
     }
-
     /* MAIN */
     const root = document.createElement('div');
     root.className = 'board-manager-wrapper f-c';

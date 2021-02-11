@@ -5,7 +5,7 @@ import { setStorage } from "../../libs/storage.js";
 
 const LoginFrom = () => {
     /* usecase event */
-    const onLogin = () => {
+    const onLogin = async() => {
         const id = $('.id', root).value;
         const pw = $('.pw', root).value;
         if(isInVailInput([id, pw])){
@@ -13,15 +13,14 @@ const LoginFrom = () => {
             return;
         }
         // 로그인 api
-        api('get', '/users/login', {id, pw}, (res) => {
-            const {user, success, err} = res.data;
-            if(!success){
-                renderError(root, err);
-                return;
-            }
-            setStorage('user', user);
-            load('home');
-        });
+        const {data} = await api('get', '/users/login', {id, pw});
+        const {user, success, err} = data;
+        if(!success){
+            renderError(root, err);
+            return;
+        }
+        setStorage('user', user);
+        load('home');
     }
 
     /* evnet listener*/

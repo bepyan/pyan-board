@@ -1,6 +1,7 @@
 import { $, $$$, isInVailInput, popSuccess, renderError, renderToggle } from "../../libs/util.js";
 import load from "../../router.js";
 import makeModal from "../../libs/makeModal.js";
+import api from "../../libs/api.js";
 
 const BoardAddModal = () => {
 
@@ -8,23 +9,16 @@ const BoardAddModal = () => {
     const addBoard = () => {
 
         const name = $('.name', root).value;
-        const state = $('.toggle', root).innerHTML;
+        const state = $('.toggle', root).innerHTML.trim();
         const description = $('.description', root).value;
         if(isInVailInput([name, state])){
             renderError(root);
             return;
         }
-        const board = {
-            name,
-            state,
-            description,
-            'members': {'test': 'owner'},
-            'lastUpdate': new Date().getTime()
-        }
-        // api add board
-
-        popSuccess('add board')
-        load('home');
+        api('post', '/boards/add', {name, state, description}).then(() => {
+            popSuccess('add board');
+            load('home');
+        });
     }
 
     /* evnet listener*/

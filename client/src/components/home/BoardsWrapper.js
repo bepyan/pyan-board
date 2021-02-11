@@ -2,6 +2,7 @@ import { $, $$$, getPassTime, openModal } from "../../libs/util.js";
 import load from "../../router.js";
 import BoardEditModal from "./BoardEditModal.js";
 import BoardAddModal from "./BoardAddModal.js";
+import Modal from "../../libs/Modal.js";
 
 const BoardsWrapper = ({boards}) => {
 
@@ -21,15 +22,13 @@ const BoardsWrapper = ({boards}) => {
             item.addEventListener('click', e => {
                 const {className} = e.target;
 
-                const board = boards.find(e => e.key === item.id)
-                board['id'] = item.id;
+                const board = boards.find(ele => ele._id === item.id);
                 switch(className){
                     case 'name':
-                        load('board', {board})
+                        load('board', {id: board._id})
                         break;
                     case 'edit-bt':
-                        // make and open modal
-                        root.appendChild(BoardEditModal({board}));
+                        BoardEditModal({board});
                         break;
                     default:
                 }
@@ -39,7 +38,7 @@ const BoardsWrapper = ({boards}) => {
 
     /* render */
     const renderBoardThums = () => boards.map(item => {
-        return `<div class="board f-r" id="${item.key}">
+        return `<div class="board f-r" id="${item._id}">
             <div class="f-c">
                 <div class="f">
                     <p class="name"> ${item.name} </p>

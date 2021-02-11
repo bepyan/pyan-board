@@ -1,16 +1,16 @@
 import api from "../libs/api.js";
 import { getStorage, removeStorage } from "../libs/storage.js";
-import { $ } from "../libs/util.js";
+import { $, openModal } from "../libs/util.js";
 import load from "../router.js";
 import MyInviteModal from "./MyInviteModal.js";
 
 const Header = () => {
-
+    /* usecase event */
     const onLogout = () => {
-        api('get', '/users/logout', {}, (res) => {
+        api('get', '/users/logout').then(() => {
             removeStorage('user');
             load('login');
-        })
+        });
     }
 
     /* event listener */
@@ -21,7 +21,7 @@ const Header = () => {
                     onLogout();
                     break;
                 case 'myInvite':
-                    $('.my-invite-wrapper').classList.remove('hidden');
+                    MyInviteModal();  
                     break;
                 default:
                     console.log(e.target.className)
@@ -40,7 +40,6 @@ const Header = () => {
         <button class="logout"> logout </button>
         <button class="myInvite"> my invite </button>
     `
-    root.appendChild(MyInviteModal());
 
     initEventListener();    
     return root;

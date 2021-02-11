@@ -5,4 +5,16 @@ const isInVailReq = (arr, res) => {
     return result;
 }
 
-module.exports = {isInVailReq}
+const isLogined = (req, res, next) => {
+    const {logined} = req.session;
+    if(!logined)
+        res.json({success: false, err: '😎 Please Login'});
+    next();
+}
+
+const isErr = (err) => {
+    if(err)
+        throw new Error(`😔 Server Error \n ${err}`);
+}
+
+module.exports = {isInVailReq, isLogined, isErr}
