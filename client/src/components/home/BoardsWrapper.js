@@ -2,8 +2,7 @@ import { $, $$$, getPassTime, openModal } from "../../libs/util.js";
 import load from "../../router.js";
 import BoardEditModal from "./BoardEditModal.js";
 import BoardAddModal from "./BoardAddModal.js";
-import Modal from "../../libs/Modal.js";
-
+import { setStorage } from "../../libs/storage.js";
 const BoardsWrapper = ({boards}) => {
 
     const initEventListener = () => {
@@ -25,7 +24,8 @@ const BoardsWrapper = ({boards}) => {
                 const board = boards.find(ele => ele._id === item.id);
                 switch(className){
                     case 'name':
-                        load('board', {id: board._id})
+                        setStorage('boardId', board._id);
+                        load('board');
                         break;
                     case 'edit-bt':
                         BoardEditModal({board});

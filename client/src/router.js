@@ -2,16 +2,18 @@ import Board from "./pages/Board.js";
 import Home from "./pages/Home.js";
 import Login from "./pages/Login.js";
 
-import { $ } from "./libs/util.js";
+import { $, popFail } from "./libs/util.js";
+import { getStorage, removeStorage, setStorage } from "./libs/storage.js";
 
-const load = async (id, props={}) => {
+const load = async (url, props={}) => {
 
     // 조금 비효율적..
-    window.sessionStorage.setItem('url', id);
+    setStorage('url', url);
+    
     const root = $(".root");
     root.innerHTML = ``;
     
-    switch(id){
+    switch(url){
         case 'login':
             root.appendChild(await Login());
             break;
@@ -19,10 +21,14 @@ const load = async (id, props={}) => {
             root.appendChild(await Home());
             break;
         case 'board':
-            root.appendChild(await Board(props));
+            if(!getStorage('boardId')){
+                popFail('Load board', 'ERROR with sessionStorage');
+                return;
+            }
+            root.appendChild(await Board());
             break;
         default:
-            root.innerHTML = id;
+            root.innerHTML = url;
     }
 }
 

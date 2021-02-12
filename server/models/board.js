@@ -18,7 +18,7 @@ const listSchema = Schema({
         type: String,
         require: true
     },
-    nodes: [noteSchema]
+    notes: [noteSchema]
 })
 
 const boardSchema = Schema({

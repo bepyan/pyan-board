@@ -25,9 +25,9 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(
-//   cookieParser(process.env.SECRET, { sameSite: "none", secure: true })
-// );
+app.use(
+  cookieParser(process.env.SECRET, { sameSite: "none", secure: true })
+);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({ origin: true, credentials: true }));
 // mongo session setup

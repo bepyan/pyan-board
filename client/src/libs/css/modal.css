@@ -40,3 +40,7 @@
 .modal-content .bt-wrapper {
     margin-bottom: 1rem;
 }
+
+.modal .note {
+    cursor: default;
+}

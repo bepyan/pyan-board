@@ -4,13 +4,13 @@ const MembersModal = ({members}) => {
     
     /* render */
     const renderMembers = () =>{
-        return Object.keys(members).map(key => `<div class="member f-r">
-            <p> ${key} </p>
-            <p> ${members[key]} </p>
+        return members.map(item => `<div class="member f-r">
+            <p> ${item.id} </p>
+            <p> ${item.auth} </p>
         </div>`).join('');
     }
     const innerHTML = `
-        <p> team member </p>
+        <h3> Team member </h3>
         ${renderMembers()}
     `
     /* MAIN */

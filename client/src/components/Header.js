@@ -9,6 +9,7 @@ const Header = () => {
     const onLogout = () => {
         api('get', '/users/logout').then(() => {
             removeStorage('user');
+            removeStorage('boardId');
             load('login');
         });
     }

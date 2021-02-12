@@ -15,7 +15,7 @@ const BoardAddModal = () => {
             renderError(root);
             return;
         }
-        api('post', '/boards/add', {name, state, description}).then(() => {
+        api('post', '/boards/', {name, state, description}).then(() => {
             popSuccess('add board');
             load('home');
         });

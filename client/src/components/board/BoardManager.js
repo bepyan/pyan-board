@@ -1,17 +1,19 @@
+import api from "../../libs/api.js";
+import { removeStorage } from "../../libs/storage.js";
 import { $, openModal } from "../../libs/util.js";
 import load from "../../router.js";
 import InviteModal from "./InviteModal.js";
 import MembersModal from "./MembersModal.js";
 
 
-const BoardManager = ({board}) => {
+const BoardManager = async({board}) => {
 
     /* render */
-    
     const initEventListener = () => {
         root.addEventListener('click', e => {
             switch(e.target.className){
                 case 'back':
+                    removeStorage('boardId');
                     load('home');
                     break;
                 case 'invite':

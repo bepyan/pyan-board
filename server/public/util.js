@@ -7,8 +7,10 @@ const isInVailReq = (arr, res) => {
 
 const isLogined = (req, res, next) => {
     const {logined} = req.session;
-    if(!logined)
+    if(!logined){
         res.json({success: false, err: '😎 Please Login'});
+        throw new Error('Not logined or Session error')
+    }
     next();
 }
 

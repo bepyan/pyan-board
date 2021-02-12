@@ -17,7 +17,7 @@ const Signup = () => {
             return;
         }
         // 회원가입 api
-        api('post', '/users/signup', {id, pw, name}, (res) => {
+        api('post', '/users/signup', {id, pw, name}).then((res) => {
             const {success, err} = res.data;
             if(!success){
                 renderError(root, err);

@@ -6,7 +6,7 @@ const Modal = (root, HTML, func) => {
     root.classList.add('modal');
     root.innerHTML = `
         <div class="modal-overlay"> </div>
-        <div class="modal-content"> 
+        <div class="modal-content f-c"> 
             ${HTML}
         </div>
     `

@@ -1,31 +1,36 @@
+import {renderLists} from "../../libs/renderApi.js";
+import { openModal } from "../../libs/util.js";
+import ListAddModal from "./ListAddModal.js";
+import NoteAddModal from "./NoteAddModal.js";
 
-const ListsWrapper = ({lists}) => {
+const ListsWrapper = ({board}) => {
 
-    /* render */
-    const renderNotes = (notes) => {
-        return notes.map(item => `<div class="note">
-            <p> ${item.note} </p>
-            <div class="f-r">
-                <p> ${item.user} </p>
-                <p> ${item.date} </p>
-            </div>
-        </div>`).join('');
-    }
-    const renderLists = () => {
-        return Object.keys(lists).map(key=> `
-            <div class="list">
-                <p> ${key} </p>
-                <div>
-                    ${renderNotes(lists[key])}
-                </div>
-            </div>
-        `).join('');
+    const initEventListener = () => {
+        root.addEventListener('click', e => {
+            const {className} = e.target;
+            const [name, idx] = className.split(" ");
+            switch(name){
+                case 'add-list':
+                    openModal('list-add-wrapper');
+                    break;
+                case 'add-note':
+                    NoteAddModal({board, idx});
+                    break;
+                case 'edit-note':
+                    break;
+            }
+        })
     }
     /* MAIN */
     const root = document.createElement('div');
-    root.className = 'lists-wrapper';
-    root.innerHTML = renderLists();
-    
+    root.className = 'f w';
+    root.innerHTML = `
+        <div class="lists-wrapper"></div>
+        <button class="add-list"> add list </button>
+    `;
+    renderLists(board.lists, root);
+    root.appendChild(ListAddModal());
+    initEventListener();
     return root;
 }
 
