@@ -3,7 +3,7 @@ const router = express.Router();
 
 const User = require('../models/user');
 const { bcryptHash, bcryptCompare } = require('../public/encypt');
-const { isInVailReq, isErr, isLogined } = require('../public/util');
+const { checkInVailReq, checkErr, isLogined } = require('../public/util');
 
 router.get('/', (req, res) => {
     const {logined, user} = req.session;
@@ -12,11 +12,10 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
     const {id, pw} = req.query;
-    if(isInVailReq([id, pw], res))
-        return;
+    checkInVailReq([id, pw]);
 
     User.findOne({ id }).exec((err, item) => {
-        isErr(err);
+        checkErr(err);
         const result = {success: false};
         if(!item)
             result['err'] = "😢 Check Your ID"
@@ -49,10 +48,9 @@ router.get('/logout', (req, res) => {
 
 router.post('/signup', async(req, res) => {
     const {id, pw, name} = req.body;
-    if(isInVailReq([id, pw, name], res))
-        return;
+    checkInVailReq([id, pw, name]);
         
-    const duplicated = await User.findOne({}).exec();
+    const duplicated = await User.findOne({id}).exec();
     if(duplicated){
         res.json({sucess: false, err: "🥲 Duplicated ID"})
         return;
@@ -60,10 +58,10 @@ router.post('/signup', async(req, res) => {
 
     const encyptPW = bcryptHash(pw);
     if(!encyptPW)
-        isErr('bcryptHash error');
+        checkErr('bcryptHash error');
     const user = new User({id, pw: encyptPW, name});
     user.save((err) => {
-        isErr(err);
+        checkErr(err);
         res.json({success: true});
     })
 

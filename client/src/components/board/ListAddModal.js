@@ -13,7 +13,7 @@ const ListAddModal = () => {
             renderError(root);
             return;
         }
-        api('post', '/boards/list', {boardId, name}).then(res => {
+        api('post', '/lists', {boardId, name}).then(res => {
             const {success} = res.data;
             if(!success){
                 renderError(root, '😱 Server ERR');

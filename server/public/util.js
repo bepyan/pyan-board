@@ -1,8 +1,14 @@
-const isInVailReq = (arr, res) => {
+const Board = require('../models/board');
+
+const checkInVailReq = (arr) => {
     const result = arr.some(item => item === undefined);
     if(result)
-        res.json({success: false, err: '😢 Invalid Request'});
-    return result;
+        throw new Error('😢 Invalid Request');
+}
+
+const checkErr = (err) => {
+    if(err)
+        throw new Error(`😔 Server Error \n ${err}`);
 }
 
 const isLogined = (req, res, next) => {
@@ -14,9 +20,24 @@ const isLogined = (req, res, next) => {
     next();
 }
 
-const isErr = (err) => {
-    if(err)
-        throw new Error(`😔 Server Error \n ${err}`);
+const isEditer = (board, req, res) => {
+    const {user: {id: userId}} = req.session;
+    const {auth} = board.members.find(item => item.id === userId);
+    if(auth !== 'edit' && auth !== 'owner'){
+        res.json({success: false, err: '😇 You have no authority'});
+        return false;
+    }
+    return true;
+}
+const isOwner = async(boardId, req, res) => {
+    const {user: {id: userId}} = req.session;
+    const board = await Board.findById(boardId).exec();
+    const {auth} = board.members.find(item => item.id === userId);
+    if (auth !== 'owner'){
+        res.json({success: false, err: '😇 You are not the owner'});
+        return false;
+    }
+    return true;
 }
 
-module.exports = {isInVailReq, isLogined, isErr}
+module.exports = {checkInVailReq, checkErr, isLogined, isEditer, isOwner }

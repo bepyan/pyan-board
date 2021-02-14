@@ -4,7 +4,7 @@ import load from "./router.js"
 
 // `SameSite` attribute..
 document.cookie = 'SameSite = None; Secure';
-// console.log(document.cookie)
+console.log(document.cookie);
 
 // axios는 session ID를 매번 바꾼다..
 axios.defaults.withCredentials = true;
@@ -15,6 +15,5 @@ api('get', '/users').then(res => {
     if(user)
         setStorage('user', user);
     const url = getStorage('url');
-    const props = getStorage('props');
-    load(logined ? url : 'login', props);
+    load(logined ? url : 'login');
 })

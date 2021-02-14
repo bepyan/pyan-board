@@ -5,7 +5,7 @@ import Login from "./pages/Login.js";
 import { $, popFail } from "./libs/util.js";
 import { getStorage, removeStorage, setStorage } from "./libs/storage.js";
 
-const load = async (url, props={}) => {
+const load = async (url) => {
 
     // 조금 비효율적..
     setStorage('url', url);

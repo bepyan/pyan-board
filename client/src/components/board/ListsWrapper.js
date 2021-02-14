@@ -1,22 +1,24 @@
 import {renderLists} from "../../libs/renderApi.js";
 import { openModal } from "../../libs/util.js";
 import ListAddModal from "./ListAddModal.js";
-import NoteAddModal from "./NoteAddModal.js";
+import NoteEditModal from "./NoteEditModal.js";
 
 const ListsWrapper = ({board}) => {
 
     const initEventListener = () => {
         root.addEventListener('click', e => {
-            const {className} = e.target;
-            const [name, idx] = className.split(" ");
-            switch(name){
+            const {className, parentElement} = e.target;
+            switch(className){
                 case 'add-list':
                     openModal('list-add-wrapper');
                     break;
                 case 'add-note':
-                    NoteAddModal({board, idx});
+                    const listId = parentElement.id;
+                    NoteEditModal({board, listId});
                     break;
                 case 'edit-note':
+                    const noteId = parentElement.id;
+                    NoteEditModal({board, noteId})
                     break;
             }
         })

@@ -26,6 +26,9 @@ const isJsonString = (str) => {
     }
     return true;
 }
+const isSameArray = (a, b) => {
+    return JSON.stringify(a) === JSON.stringify(b);
+}
 
 const renderError = (root, str=`😢 Invaild Input`) => {
     const $error = $('.error', root);
@@ -56,4 +59,4 @@ const popFail = (work, err='') => {
     alert(`😭 fail to work "${work}" \n`);
 };
 
-export {$, $$, $$$, renderToggle, openModal, closeModal, isInVailInput, renderError, getPassTime, popSuccess, popFail, isJsonString};
+export {$, $$, $$$, renderToggle, openModal, closeModal, isInVailInput, isSameArray, renderError, getPassTime, popSuccess, popFail, isJsonString};

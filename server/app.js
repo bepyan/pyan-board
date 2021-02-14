@@ -44,6 +44,8 @@ app.use(session({
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/boards', require('./routes/boards'));
+app.use('/lists', require('./routes/lists'));
+app.use('/notes', require('./routes/notes'));
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 

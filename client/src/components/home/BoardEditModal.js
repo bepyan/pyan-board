@@ -15,7 +15,7 @@ const BoardEditModal = ({board}) => {
         board.name = $('.name', root).value;
         board.description = $('.description', root).value;
         // api edit board
-        api('put', '/boards/edit', {board}).then(res => {
+        api('put', '/boards', {board}).then(res => {
             root.remove();
             load('home');
         })
@@ -24,6 +24,12 @@ const BoardEditModal = ({board}) => {
         const res = prompt('🥺 Do you really want to delete this board?\n type "yes" to delete');
         if(res === 'yes'){
             api('delete', '/boards', {boardId: board._id}).then(res => {
+                const {err} = res.data;
+                if(err){
+                    root.remove();
+                    popFail(err);
+                    return;
+                }
                 root.remove();
                 popSuccess('delete');
                 load('home');
