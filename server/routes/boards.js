@@ -54,11 +54,9 @@ router.put('/', async(req, res) => {
     const {board: {_id, name, state, description}} = req.body;
     checkInVailReq([_id, name, state, description]);
     const pass = await isOwner(_id, req, res)
-    console.log(pass)
     if(!pass)
         return;
-    console.log('arr')
-
+        
     await Board.findByIdAndUpdate(_id, {
             $set: {name, state, description, lastUpdate: new Date()}
         }).exec();
@@ -74,10 +72,8 @@ router.delete('/', async(req, res) => {
     const {boardId} = req.body;
     checkInVailReq([boardId]);
     const pass = await isOwner(boardId, req, res)
-    console.log(pass)
     if(!pass)
         return;
-    console.log('arr')
 
     const board = await Board.findById(boardId).exec();
     if(!board)
