@@ -12,7 +12,7 @@ const BoardSearch = () => {
 
         api('get', '/boards/search', {text}).then(res => {
             const {boards} = res.data;
-            renderBoardsThum(boards, true);
+            renderBoardsThum(boards);
         });
     }
 

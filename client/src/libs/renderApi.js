@@ -2,24 +2,25 @@ import { getStorage } from "./storage.js";
 import { $, getPassTime } from "./util.js";
 
 /* render board thums */
-const renderBoardsThum = (boards, isSearch, root=document) => {
+const getAction = (members, id) => {
+    const user = members.find(e => e.id === id);
+    if(!user)
+        return 'join'
+    switch(user.auth){
+        case 'owner': 
+            return 'edit';
+        case 'edit': case 'read':
+            return '😎'
+    }
+    return 'wait'
+}
+const renderBoardsThum = (boards, root=document) => {
     const {id} = getStorage('user');
-    let action = 'join';
 
     const $wrapper = $('.boards-thum-wrapper', root);
     $wrapper.innerHTML = boards.map(item => {
-        const {auth} = item.members.find(ele => ele.id === id)
-        switch(auth){
-            case 'owner': 
-                action = 'edit'
-                break;
-            case 'edit': case 'read':
-                action = '😎'
-                break;
-            default:
-                action = 'wait'
-        }
-            
+        let action = getAction(item.members, id);
+
         return `<div class="board f-r" id="${item._id}">
             <div class="f-c">
                 <div class="f">

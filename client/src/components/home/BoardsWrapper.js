@@ -16,13 +16,18 @@ const BoardsWrapper = ({boards}) => {
     }
     const onMyBoard = async() => {
         const {data: {boards: newBoards}} = await api('get', '/boards');
-        renderBoardsThum(newBoards, false);
+        renderBoardsThum(newBoards, root);
     }
 
+    const getBoardId = (e) => {
+        const board = findParent('board', e.target);
+        if(!board)
+            return;
+        return board.id;
+    }
     const initEventListener = () => {
         root.addEventListener('click', e => {
-            root.parentElement
-            const {id: boardId}  = findParent('board', e.target);
+            const boardId  = getBoardId(e);
             switch(e.target.className){
                 case 'my-board-bt':
                     onMyBoard();
@@ -56,7 +61,7 @@ const BoardsWrapper = ({boards}) => {
         </div>
         <div class="boards-thum-wrapper"></div>
     `
-    renderBoardsThum(boards, false, root);
+    renderBoardsThum(boards, root);
 
     root.appendChild(BoardAddModal());
     initEventListener();
