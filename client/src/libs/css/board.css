@@ -63,3 +63,7 @@
 .time {
     margin-top: 0.1rem;
 }
+
+.members-wrapper .request, .members-wrapper .invite{
+    margin-top: 1rem;
+}
