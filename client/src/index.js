@@ -12,8 +12,8 @@ axios.defaults.withCredentials = true;
 api('get', '/users').then(res => {
     const {logined, user, sessionId} = res.data;
     console.log(`😇 your session ID : \n ${sessionId}`);
+    const url = getStorage('url');
     if(user)
         setStorage('user', user);
-    const url = getStorage('url');
     load(logined ? url : 'login');
 })

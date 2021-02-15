@@ -5,10 +5,14 @@ import BoardAddModal from "./BoardAddModal.js";
 import { setStorage } from "../../libs/storage.js";
 import { renderBoardsThum } from "../../libs/renderApi.js";
 import api from "../../libs/api.js";
+import Modal from "../../libs/Modal.js";
 const BoardsWrapper = ({boards}) => {
 
-    const onJoin = () => {
-        popSuccess('🤩 JUST WAIT FOR OWNER ACEPT')
+    const onJoin = ({boardId}) => {
+        api('post', '/boards/join', {boardId}).then(res => {
+            
+            Modal(document.createElement('div'), '🤩 JUST WAIT FOR OWNER ACEPT 🤩')
+        })
     }
     const onMyBoard = async() => {
         const {data: {boards: newBoards}} = await api('get', '/boards');
@@ -18,8 +22,8 @@ const BoardsWrapper = ({boards}) => {
     const initEventListener = () => {
         root.addEventListener('click', e => {
             root.parentElement
-            const {className, parentElement} = e.target;
-            switch(className){
+            const {id: boardId}  = findParent('board', e.target);
+            switch(e.target.className){
                 case 'my-board-bt':
                     onMyBoard();
                     break;
@@ -29,16 +33,14 @@ const BoardsWrapper = ({boards}) => {
                 case 'sort-bt':
                     break;
                 case 'name':
-                    const {id}  = findParent('board', e.target);
-                    setStorage('boardId', id);
+                    setStorage('boardId', boardId);
                     load('board');
                     break;
                 case 'edit':
-                    const {id: boardId}  = findParent('board', e.target);
                     BoardEditModal({boards, boardId});
                     break;
                 case 'join':
-                    onJoin();
+                    onJoin({boardId});
                     break;
             }
         })

@@ -4,12 +4,22 @@ import { $, getPassTime } from "./util.js";
 /* render board thums */
 const renderBoardsThum = (boards, isSearch, root=document) => {
     const {id} = getStorage('user');
-    let action = isSearch ? 'join' : 'edit'
+    let action = 'join';
 
     const $wrapper = $('.boards-thum-wrapper', root);
     $wrapper.innerHTML = boards.map(item => {
-        if(isSearch && item.members.some(ele => ele.id === id))
-            action = 'edit';
+        const {auth} = item.members.find(ele => ele.id === id)
+        switch(auth){
+            case 'owner': 
+                action = 'edit'
+                break;
+            case 'edit': case 'read':
+                action = '😎'
+                break;
+            default:
+                action = 'wait'
+        }
+            
         return `<div class="board f-r" id="${item._id}">
             <div class="f-c">
                 <div class="f">

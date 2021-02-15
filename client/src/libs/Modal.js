@@ -1,7 +1,7 @@
 import { $ } from "./util.js";
 
 /* Modal version 2 */
-const Modal = (root, HTML, func) => {
+const Modal = (root, HTML, func=()=>{}) => {
 
     root.classList.add('modal');
     root.innerHTML = `

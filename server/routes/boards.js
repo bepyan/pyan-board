@@ -56,6 +56,17 @@ router.post('/', (req, res) => {
     })
 })
 
+router.post('/join', async(req, res) => {
+    const {user: {id}} = req.session;
+    const {boardId} = req.body;
+
+    // 보안에 취약.. 예외처리 요망..
+    await Board.findByIdAndUpdate(boardId, {
+        $push: {members: {id, auth: "request"}}
+    }).exec();
+    res.json({success: true});
+})
+
 /* ------ put ------- */
 
 router.put('/', async(req, res) => {

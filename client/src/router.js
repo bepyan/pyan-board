@@ -8,6 +8,8 @@ import { getStorage, removeStorage, setStorage } from "./libs/storage.js";
 const load = async (url) => {
 
     // 조금 비효율적..
+    if(getStorage('user') && url === null)
+        url = 'home';
     setStorage('url', url);
     
     const root = $(".root");
