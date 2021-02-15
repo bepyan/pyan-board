@@ -1,4 +1,31 @@
-import { $ } from "./util.js";
+import { getStorage } from "./storage.js";
+import { $, getPassTime } from "./util.js";
+
+/* render board thums */
+const renderBoardsThum = (boards, isSearch, root=document) => {
+    const {id} = getStorage('user');
+    let action = isSearch ? 'join' : 'edit'
+
+    const $wrapper = $('.boards-thum-wrapper', root);
+    $wrapper.innerHTML = boards.map(item => {
+        if(isSearch && item.members.some(ele => ele.id === id))
+            action = 'edit';
+        return `<div class="board f-r" id="${item._id}">
+            <div class="f-c">
+                <div class="f">
+                    <p class="name"> ${item.name} </p>
+                    <p class="state"> ${item.state} </p>
+                </div>
+                <p class="time"> ${getPassTime(item.lastUpdate)} </p>
+            </div>
+            <p style="flex: 1.5"> ${item.description} </p>
+            <div class="bt-wrapper f-r">
+                <button class="${action}"> ${action} </button>
+            </div>
+        </div>`
+    }).join('');
+}
+
 
 /* render board lists */
 const renderMembers = (note) => {
@@ -30,4 +57,4 @@ const renderLists = (lists, root=document) => {
         </div>
     `).join('');
 }
-export {renderLists};
+export {renderBoardsThum, renderLists};

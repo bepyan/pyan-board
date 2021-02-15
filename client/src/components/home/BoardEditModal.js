@@ -1,11 +1,15 @@
-import { $, $$$, popFail, popSuccess, renderToggle } from "../../libs/util.js";
+import { $, popFail, popSuccess, renderError, renderToggle } from "../../libs/util.js";
 import load from "../../router.js";
-import makeModal from "../../libs/makeModal.js";
 import Modal from "../../libs/Modal.js";
 import api from "../../libs/api.js";
+import { renderBoardsThum } from "../../libs/renderApi.js";
 
-const BoardEditModal = ({board}) => {
+const BoardEditModal = ({boards, boardId}) => {
 
+    const close = () => {
+        root.remove();
+        renderBoardsThum(boards, false);
+    }
     /* usecase event */
     const onToggle = (state) => {
         board.state = state;
@@ -14,25 +18,23 @@ const BoardEditModal = ({board}) => {
     const onEdit = () => {
         board.name = $('.name', root).value;
         board.description = $('.description', root).value;
-        // api edit board
+
         api('put', '/boards', {board}).then(res => {
-            root.remove();
-            load('home');
+            close();
         })
     }
     const onDelete = () => {
         const res = prompt('🥺 Do you really want to delete this board?\n type "yes" to delete');
         if(res === 'yes'){
-            api('delete', '/boards', {boardId: board._id}).then(res => {
+            api('delete', '/boards', {boardId}).then(res => {
                 const {err} = res.data;
                 if(err){
-                    root.remove();
-                    popFail(err);
+                    renderError(err);
                     return;
                 }
-                root.remove();
-                popSuccess('delete');
-                load('home');
+                const idx = boards.findIndex(item => item._id === boardId);
+                boards[idx].splice(idx, 1);
+                close();
             })
         }
     }
@@ -59,7 +61,7 @@ const BoardEditModal = ({board}) => {
     }
     
     /* render */
-    const innerHTML = `
+    const renderInnerHTML = () => `
         <div class="f-c">
             
             <input class="name" value="${board.name}" placeholder="board name">
@@ -79,9 +81,11 @@ const BoardEditModal = ({board}) => {
     `
 
     /* MAIN */
+    const board = boards.find(item => item._id === boardId);
+
     const root = document.createElement('div');
     root.className = 'board-edit-wrapper';
-    Modal(root, innerHTML, () => {
+    Modal(root, renderInnerHTML(), () => {
         renderToggle(root, board.state);
         initEventListener();
     })

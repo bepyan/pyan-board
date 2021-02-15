@@ -26,6 +26,14 @@ router.get('/board', async(req, res) => {
     res.json({board});
 })
 
+router.get('/search', async(req, res) => {
+    const {text} = req.query;
+    const boards = await Board.find({
+        name: {$regex: text},
+        state: 'public'
+    }).exec();
+    res.json({boards});
+})
 /* ------ post ------- */
 
 router.post('/', (req, res) => {

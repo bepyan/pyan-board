@@ -47,7 +47,7 @@ const boardSchema = Schema({
         },
         auth: { 
             type: String, 
-            enum: ["owner", "edit", "read"], 
+            enum: ["owner", "edit", "read", "invite", "request"], 
             require: true
         }
     }],

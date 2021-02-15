@@ -9,9 +9,9 @@ const Home = async() => {
         const {data} = await api('get', '/boards');
         return data.boards;
     }
+    const boards = await getBoards();
 
     /* MAIN */
-    const boards = await getBoards();
 
     const root = document.createElement('div');
     root.className = 'home-warpper f-c'

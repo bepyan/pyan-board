@@ -59,4 +59,11 @@ const popFail = (work, err='') => {
     alert(`😭 fail to work "${work}" \n`);
 };
 
-export {$, $$, $$$, renderToggle, openModal, closeModal, isInVailInput, isSameArray, renderError, getPassTime, popSuccess, popFail, isJsonString};
+const findParent = (className, target) => {
+    const {parentElement} = target;
+    if(parentElement.className.split(" ")[0] === className)
+        return parentElement;
+    return findParent(className, parentElement);
+}
+
+export {$, $$, $$$, renderToggle, openModal, closeModal, isInVailInput, isSameArray, renderError, getPassTime, popSuccess, popFail, isJsonString, findParent};

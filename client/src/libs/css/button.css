@@ -32,3 +32,10 @@ button:active {
 .delete:hover {
     box-shadow: 0 1px 5px rgba(255, 0, 0, 0.2);
 }
+
+.join{
+    color: darkgreen;
+}
+.join:hover {
+    box-shadow: 0 1px 5px rgba(0, 200, 0, 0.3);
+}

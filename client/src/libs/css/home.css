@@ -9,7 +9,9 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     margin-top: 1rem;
 }
-
+.boards-thum-wrapper{
+    width: 100%;
+}
 /* wrapper layout */
 
 .setting {
