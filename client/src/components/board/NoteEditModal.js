@@ -119,6 +119,7 @@ const NoteEditModal = ({board, listId, noteId}) => {
         listId = list._id;
 
     const root = document.createElement('div');
+    root.className = 'note-edit-wrapper';
     const innerHTML = `
         <h4> 🙋🏻 ${list.name} </h4>
         <input class="text">

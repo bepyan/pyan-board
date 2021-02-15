@@ -1,38 +1,49 @@
 import {renderLists} from "../../libs/renderApi.js";
-import { openModal } from "../../libs/util.js";
-import ListAddModal from "./ListAddModal.js";
+import { $$$, openModal } from "../../libs/util.js";
+import ListEditModal from "./ListEditModal.js";
 import NoteEditModal from "./NoteEditModal.js";
 
 const ListsWrapper = ({board}) => {
 
+
+
     const initEventListener = () => {
         root.addEventListener('click', e => {
             const {className, parentElement} = e.target;
+            const id = parentElement.id;
             switch(className){
                 case 'add-list':
-                    openModal('list-add-wrapper');
+                    ListEditModal({board});
+                    break;
+                case 'edit-list':
+                    ListEditModal({board, listId: id});
                     break;
                 case 'add-note':
-                    const listId = parentElement.id;
-                    NoteEditModal({board, listId});
+                    NoteEditModal({board, listId: id});
                     break;
                 case 'edit-note':
-                    const noteId = parentElement.id;
-                    NoteEditModal({board, noteId})
+                    NoteEditModal({board, noteId: id})
                     break;
             }
         })
     }
     /* MAIN */
+    const {lists} = board;
     const root = document.createElement('div');
     root.className = 'f w';
     root.innerHTML = `
         <div class="lists-wrapper"></div>
         <button class="add-list"> add list </button>
     `;
-    renderLists(board.lists, root);
-    root.appendChild(ListAddModal());
+    renderLists(lists, root);
     initEventListener();
+
+    $$$('.notes-wrapper', root).forEach(item => {
+        new Sortable(item, {
+            animation : 350
+        });
+    })
+
     return root;
 }
 

@@ -27,6 +27,13 @@
     flex: 1;
     margin-right: 1rem;
 }
+.edit-list {
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+.edit-list:hover {
+    transform: scale(0.99);
+}
 .list > button {
     margin-top: 1rem;
     width: 100%;
@@ -44,7 +51,7 @@
     cursor: default;
 }
 .note > h1 {
-    font-weight: 800;
+    font-weight: 700;
     cursor: pointer;
 }
 .note > h1:hover {

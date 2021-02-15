@@ -24,7 +24,7 @@ const renderLists = (lists, root=document) => {
     const $lists = $('.lists-wrapper', root);
     $lists.innerHTML = lists.map((item, idx) => `
         <div class="list" id="${item._id}">
-            <p class="list-name"> ${item.name} </p>
+            <p class="edit-list"> ${item.name} </p>
             ${renderNotes(item.notes)}
             <button class="add-note"> + </button>
         </div>
