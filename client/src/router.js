@@ -3,10 +3,12 @@ import Home from "./pages/Home.js";
 import Login from "./pages/Login.js";
 
 import { $, popFail } from "./libs/util.js";
-import { getStorage, removeStorage, setStorage } from "./libs/storage.js";
+import { getStorage, setStorage } from "./libs/storage.js";
 
 const load = async (url) => {
 
+    if(url)
+        setStorage('url', url);
     // 조금 비효율적..
     if(getStorage('user') && url === null)
         url = 'home';
