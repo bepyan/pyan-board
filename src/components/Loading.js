@@ -1,0 +1,1 @@
+`https://orig11.deviantart.net/dcab/f/2011/158/1/6/nyan_cat_by_valcreon-d3iapfh.gif`;
