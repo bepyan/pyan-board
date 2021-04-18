@@ -1,12 +1,12 @@
-import { db } from "./api/mock.js";
-import Login from "./container/Login.js";
+import Board from "./container/Board.js"
+import Login from "./container/Login.js"
 
 function App($app) {
     this.state = {
-        
+
     }
-    /* Render Children*/
-    new Login({ $app, initialState: this.state })
+    /* Render Children */
+    new Board({ $app })
 
     // const init = async = () => {
     //     try{
