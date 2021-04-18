@@ -1,24 +1,12 @@
 import { db } from "./api/mock.js";
-import Breadcrumb from "./components/Breadcrumb.js";
-import Nodes from "./components/Nodes.js";
+import Login from "./container/Login.js";
 
 function App($app) {
     this.state = {
-        isRoot: false,
-        nodes: db,
-        depth: []
+        
     }
-    const breadcrumb = new Breadcrumb({
-        $app,
-        initalState: this.state.depth
-    })
-    const nodes = new Nodes({
-        $app,
-        initialState: {
-            isRoot: this.state.isRoot,
-            nodes: this.state.nodes
-        }
-    })
+    /* Render Children*/
+    new Login({ $app, initialState: this.state })
 
     // const init = async = () => {
     //     try{
