@@ -1,0 +1,6 @@
+button {
+    all: unset;
+    font-family: 'Black Han Sans', sans-serif;
+    cursor: pointer;
+    padding: 10px;
+}

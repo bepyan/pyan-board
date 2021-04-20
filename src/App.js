@@ -1,3 +1,5 @@
+import Cursor from "./components/Cursor.js";
+import EyeTrackingHeader from "./components/EyeTrackingHeader.js"
 import Board from "./container/Board.js"
 import Login from "./container/Login.js"
 
@@ -6,7 +8,10 @@ function App($app) {
 
     }
     /* Render Children */
-    new Board({ $app })
+    const Header = new EyeTrackingHeader({ $app });
+
+    // new Board({ $app })
+
 
     // const init = async = () => {
     //     try{

@@ -1,1 +1,29 @@
+
 @import url(reset.css);
+@import url(button.css);
+@import url(eyeTrackingHeader.css);
+@import url(cursor.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
+html,
+body {
+    height: 100%;
+    font-family: 'Black Han Sans', sans-serif;
+    background: #1e313f;
+}
+main {
+    /* display: flex;
+    justify-content: center; */
+}
+h1 {
+    font-size: 60px;
+}
+h2 {
+    font-size: 50px;
+}
+
+.unselectable {
+  user-select: none;
+}
+
