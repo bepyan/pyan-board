@@ -75,7 +75,7 @@ export default function EyeTrackingHeader({ $app }) {
     `, 'application/xml');
    
     const $target = document.createElement("div");
-    $target.className = `eyeTrackingHeaderWrapper`
+    $target.className = `eyeTrackingHeaderWrapper cursor-disappear`
     $target.appendChild($target.ownerDocument.importNode(HeaderImage.documentElement, true));
     $app.appendChild($target);
 

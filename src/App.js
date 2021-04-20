@@ -9,6 +9,7 @@ function App($app) {
     }
     /* Render Children */
     const Header = new EyeTrackingHeader({ $app });
+    new Cursor();
 
     // new Board({ $app })
 

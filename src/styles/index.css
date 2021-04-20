@@ -11,10 +11,7 @@ body {
     height: 100%;
     font-family: 'Black Han Sans', sans-serif;
     background: #1e313f;
-}
-main {
-    /* display: flex;
-    justify-content: center; */
+    cursor: none;
 }
 h1 {
     font-size: 60px;
